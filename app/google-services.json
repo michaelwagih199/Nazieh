@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "83065236340",
+    "firebase_url": "https://michael-1244.firebaseio.com",
+    "project_id": "michael-1244",
+    "storage_bucket": "michael-1244.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83065236340:android:4043d431f1a6b15eeada21",
+        "android_client_info": {
+          "package_name": "omel.polymogo.nazieh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83065236340-artosd3qpejscaj45phdihlutmqh53vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4Nl9jQnvpKNeSxh8mnvjqDaWb1AzNUts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83065236340-artosd3qpejscaj45phdihlutmqh53vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
