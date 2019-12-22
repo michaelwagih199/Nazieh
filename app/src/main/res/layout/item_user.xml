@@ -22,6 +22,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
+            <ImageView
+                android:id="@+id/delete_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_delete_black_24dp"
+                tools:ignore="VectorDrawableCompat" />
+
             <TextView
                 android:id="@+id/txtVCustomerName"
                 android:layout_width="match_parent"
@@ -47,6 +54,7 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/_12ssp"
                     android:layout_weight="1"/>
+
                 <ImageView
                     android:id="@+id/imgVCall"
                     android:layout_width="wrap_content"

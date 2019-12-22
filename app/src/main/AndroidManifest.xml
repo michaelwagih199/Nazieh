@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.CustomerDetails"></activity>
+        <activity android:name=".activities.Expenses"></activity>
+        <activity android:name=".activities.Profits" />
+        <activity android:name=".activities.CustomerDetails" />
         <activity android:name=".activities.AddCustomers" />
         <activity android:name=".activities.Setting" />
         <activity android:name=".activities.Tresury" />

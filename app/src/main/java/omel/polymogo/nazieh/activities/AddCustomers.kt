@@ -1,6 +1,7 @@
 package omel.polymogo.nazieh.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -40,6 +41,9 @@ class AddCustomers : AppCompatActivity(),View.OnClickListener {
                         messageAlerts.displayToast(mContext,"ضع رقم التليفون")
                     else
                     addUser(etName.text.toString(),etPhone.text.toString())
+                    var i =Intent(mContext,omel.polymogo.nazieh.activities.Customer::class.java)
+                    startActivity(i)
+                    finish()
                 }
 
             }

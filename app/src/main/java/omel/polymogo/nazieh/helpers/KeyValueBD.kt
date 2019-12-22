@@ -21,4 +21,5 @@ class KeyValueBD {
         editor.putString("username_key", input)
         editor.commit()
     }
+
 }

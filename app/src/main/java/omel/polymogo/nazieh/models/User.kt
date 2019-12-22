@@ -5,18 +5,17 @@ package omel.polymogo.nazieh.models
  */
 class User {
 
-
-    /// MOdel class
+    // MOdel class
     var name : String? = null
     var phone : String? = null
-
+    var id : String? = null
 
     constructor(){
 
     }
-    constructor(name: String?, phone: String?) {
+    constructor(name: String?, phone: String?,id:String?) {
         this.name = name
         this.phone = phone
-
+        this.id = id
     }
 }
