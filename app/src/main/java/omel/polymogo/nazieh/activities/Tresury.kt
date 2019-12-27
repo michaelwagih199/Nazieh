@@ -54,7 +54,5 @@ class Tresury : AppCompatActivity() , View.OnClickListener {
                 }
             }
         }
-
-
     }
 }

@@ -29,7 +29,7 @@ class CustomerDetails : AppCompatActivity() , View.OnClickListener{
         setContentView(R.layout.activity_customer_details)
         mContext = this
         txtVcustomer = findViewById(R.id.txtVCustomerNameDetail)
-        btnAddToList = findViewById(R.id.btnAddAccount)
+        btnAddToList = findViewById(R.id.fBtnAddCustomerDetail)
         txtVcustomerId = findViewById(R.id.txtVCustomerId)
 
         mFirebaseDatabase = FirebaseDatabase.getInstance()
@@ -37,11 +37,13 @@ class CustomerDetails : AppCompatActivity() , View.OnClickListener{
 
         //get data from intent
         val intent = intent
+
         try {
             val name = intent.getStringExtra("CustomerName")
             val id = intent.getStringExtra("CustomerId")
             txtVcustomer.setText(name)
             txtVcustomerId.setText(id)
+
         } finally {
 
         }

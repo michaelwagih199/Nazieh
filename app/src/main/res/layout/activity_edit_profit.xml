@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.EditProfit">
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_rounded_transparent"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_20ssp"
+        android:paddingBottom="@dimen/_20ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5ssp"
+            android:text="اضافة الى الخزنة"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etcustomerNameProfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5ssp"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:layout_marginRight="@dimen/_5ssp"
+            android:ems="10"
+            android:hint=" اسم العميل"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            />
+
+        <EditText
+            android:id="@+id/etTotalIncomeProfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5ssp"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:layout_marginRight="@dimen/_5ssp"
+            android:ems="10"
+            android:hint="المبلغ"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5ssp"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:layout_marginRight="@dimen/_5ssp"
+            android:ems="10"
+            android:hint="ملاحظات"
+            android:inputType="textMultiLine"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSaveProfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_20ssp"
+            android:layout_marginRight="@dimen/_10ssp"
+            android:background="@drawable/ic_rounded_button_yellow"
+            android:text="حفظ"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_24ssp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
