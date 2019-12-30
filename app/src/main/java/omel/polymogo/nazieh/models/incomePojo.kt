@@ -1,6 +1,6 @@
 package omel.polymogo.nazieh.models
 
-class IncomeProfitPojo {
+class incomePojo {
     var userId: String? = null
     var date: String? = null
     var totalIncome: Double? = null

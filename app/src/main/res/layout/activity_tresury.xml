@@ -163,34 +163,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/_8ssp"
-            android:layout_marginTop="@dimen/_16ssp"
-            android:layout_marginRight="@dimen/_8ssp"
-            android:background="@color/primaryLightGray"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="إجمالى الارباح"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/_16ssp" />
-
-            <TextView
-                android:id="@+id/txtVTotalRevenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:text="0000000"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/_16ssp" />
-        </LinearLayout>
     </LinearLayout>
 
 

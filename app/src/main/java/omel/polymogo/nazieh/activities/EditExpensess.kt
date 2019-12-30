@@ -11,39 +11,38 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.RequiresApi
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_edit_profit.*
 import omel.polymogo.nazieh.R
 import omel.polymogo.nazieh.helpers.KeyValueBD
 import omel.polymogo.nazieh.helpers.MessageAlerts
+import omel.polymogo.nazieh.models.ExpencessPojo
 import omel.polymogo.nazieh.models.incomePojo
-import omel.polymogo.nazieh.recyclerviewAdapter.IncomeAdapter
 import java.time.LocalDateTime
 
-class EditProfit : AppCompatActivity(), View.OnClickListener {
+
+class EditExpensess : AppCompatActivity(), View.OnClickListener {
 
     var messageAlerts = MessageAlerts()
     val key = KeyValueBD()
-    lateinit var etCustomerProfitName: EditText
-    lateinit var etTotalIncomeProfit: EditText
-    lateinit var etNotes: EditText
-    lateinit var btnAddProfit: Button
-    lateinit var mContext: Context
-    lateinit var mFirebaseDatabase: FirebaseDatabase
-    lateinit var myRef: DatabaseReference
-    var profitArray = ArrayList<incomePojo?>()
-    var id: String = "m"
+    private lateinit var etTotalexpensee: EditText
+    private lateinit var etStatment: EditText
+    private lateinit var btnSaveExpenses: Button
+    private lateinit var mContext: Context
 
+    private lateinit var mFirebaseDatabase: FirebaseDatabase
+    private lateinit var myRef: DatabaseReference
+    var ExpencesstArray = ArrayList<ExpencessPojo?>()
+    var id: String = "m"
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profit)
+        setContentView(R.layout.activity_edit_expensess)
+
         mContext = this
-        etCustomerProfitName = findViewById(R.id.etcustomerNameProfit)
-        etNotes = findViewById(R.id.etNotes)
-        etTotalIncomeProfit = findViewById(R.id.etTotalIncomeProfit)
-        btnAddProfit = findViewById(R.id.btnSaveProfit)
-        btnAddProfit.setOnClickListener(this)
+        etStatment = findViewById(R.id.etStatment)
+        etTotalexpensee = findViewById(R.id.etTotalexpensee)
+        btnSaveExpenses = findViewById(R.id.btnSaveExpenses)
+        btnSaveExpenses.setOnClickListener(this)
 
         mFirebaseDatabase = FirebaseDatabase.getInstance()
         myRef = mFirebaseDatabase.getReference()
@@ -56,43 +55,46 @@ class EditProfit : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v != null) {
             when (v.getId()) {
-                R.id.btnSaveProfit -> {
+                R.id.btnSaveExpenses -> {
                     val current = LocalDateTime.now().toString()
-                    if (btnAddProfit.text.equals("حفظ")) {
-                        addProfit(
+                    if (btnSaveExpenses.text.equals("حفظ")) {
+                        addExpensses(
                             current,
-                            (etTotalIncomeProfit.text.toString()).toDouble(),
-                            etNotes.text.toString(),
-                            etCustomerProfitName.text.toString()
+                            (etTotalexpensee.text.toString()).toDouble(),
+                            etStatment.text.toString()
                         )
-                    } else {
-                        updateProfit(
+
+                    }else{
+
+                        updateExpensses(
                             id,
                             current,
-                            (etTotalIncomeProfit.text.toString()).toDouble(),
-                            etNotes.text.toString(),
-                            etCustomerProfitName.text.toString()
+                            (etTotalexpensee.text.toString()).toDouble(),
+                            etStatment.text.toString()
                         )
+
                     }
+
                 }
 
             }
         }
     }
 
-    fun addProfit(
+    fun addExpensses(
         date: String,
-        totalIncome: Double,
-        notes: String,
-        customerName: String
+        expenses: Double,
+        statatment: String
     ) {
         try {
-            val ref = FirebaseDatabase.getInstance().getReference("Income")
+            val ref = FirebaseDatabase.getInstance().getReference("expenses")
             val userId = ref.push().key
-            val income = incomePojo(userId, date, totalIncome, notes, customerName)
-            ref.child(userId.toString()).setValue(income).addOnCompleteListener() {
+            val expencess = ExpencessPojo(userId, date, expenses, statatment)
+            ref.child(userId.toString()).setValue(expencess).addOnCompleteListener() {
+                // update income
+
                 messageAlerts.displayToast(mContext, "تم الحفظ")
-                val i = Intent(this, Profits::class.java)
+                val i = Intent(this, Expenses::class.java)
                 startActivity(i)
                 finish()
             }
@@ -102,19 +104,20 @@ class EditProfit : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun updateProfit(
+    fun updateExpensses(
         userId: String,
         date: String,
-        totalIncome: Double,
-        notes: String,
-        customerName: String
+        expenses: Double,
+        statatment: String
     ) {
         try {
-            val ref = FirebaseDatabase.getInstance().getReference("Income")
-            val income = incomePojo(userId, date, totalIncome, notes, customerName)
-            ref.child(userId).setValue(income).addOnCompleteListener() {
-                messageAlerts.displayToast(mContext, "تم التعديل")
-                val i = Intent(this, Profits::class.java)
+            val ref = FirebaseDatabase.getInstance().getReference("expenses")
+            val expencess = ExpencessPojo(userId, date, expenses, statatment)
+            ref.child(userId.toString()).setValue(expencess).addOnCompleteListener() {
+                // update income
+
+                messageAlerts.displayToast(mContext, "تم الحفظ")
+                val i = Intent(this, Expenses::class.java)
                 startActivity(i)
                 finish()
             }
@@ -124,8 +127,9 @@ class EditProfit : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
     fun handle_Edit() {
-        btnAddProfit.setText("حفظ")
+        btnSaveExpenses.setText("حفظ")
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
             val message = bundle.getString("editFlag")
@@ -145,24 +149,27 @@ class EditProfit : AppCompatActivity(), View.OnClickListener {
 
 
     private fun rtriveLayouData(id: String?) {
-        val query = myRef.child("Income")
+        val query = myRef.child("expenses")
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 try {
                     if (dataSnapshot.exists()) {
 
                         for (issue in dataSnapshot.children) {
-                            val note = issue.getValue<incomePojo>(incomePojo::class.java)
-                            profitArray.add(note)
+                            val note = issue.getValue<ExpencessPojo>(ExpencessPojo::class.java)
+                            ExpencesstArray.add(note)
                         }
                     }
-                    for (i in profitArray) {
+                    for (i in ExpencesstArray) {
+
                         if (i?.userId.equals(id)) {
-                            btnAddProfit.setText("تعديل")
-                            etcustomerNameProfit.setText(i?.customerName)
-                            etTotalIncomeProfit.setText(i?.totalIncome.toString())
-                            etNotes.setText(i?.notes)
+
+                            btnSaveExpenses.setText("تعديل")
+                            etStatment.setText(i?.statatment)
+                            etTotalexpensee.setText(i?.expenses.toString())
+
                         }
+
                     }
 
                 } catch (e: Exception) {
@@ -176,8 +183,7 @@ class EditProfit : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+
     }
-
-
 
 }

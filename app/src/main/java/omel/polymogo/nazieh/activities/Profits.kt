@@ -14,21 +14,21 @@ import com.google.firebase.database.*
 import omel.polymogo.nazieh.R
 import omel.polymogo.nazieh.helpers.KeyValueBD
 import omel.polymogo.nazieh.helpers.MessageAlerts
-import omel.polymogo.nazieh.models.IncomeProfitPojo
+import omel.polymogo.nazieh.models.ExpencessPojo
+import omel.polymogo.nazieh.models.incomePojo
 import omel.polymogo.nazieh.recyclerviewAdapter.IncomeAdapter
-import omel.polymogo.nazieh.recyclerviewAdapter.ItemAdapter
 
-class Profits : AppCompatActivity() , View.OnClickListener{
+class Profits : AppCompatActivity(), View.OnClickListener {
     var messageAlerts = MessageAlerts()
     val key = KeyValueBD()
 
     private lateinit var flbtnAddProfit: FloatingActionButton
 
     private lateinit var mContext: Context
-    lateinit var mRecyclerView : RecyclerView
+    lateinit var mRecyclerView: RecyclerView
     private lateinit var mFirebaseDatabase: FirebaseDatabase
     private lateinit var myRef: DatabaseReference
-    var profitArray = ArrayList<IncomeProfitPojo?> ()
+    var profitArray = ArrayList<incomePojo?>()
     private lateinit var adapter: IncomeAdapter
 
 
@@ -48,12 +48,13 @@ class Profits : AppCompatActivity() , View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
-        if (v!=null){
-            when(v.getId()){
+        if (v != null) {
+            when (v.getId()) {
 
-                R.id.flBtnAddProfit->{
+                R.id.flBtnAddProfit -> {
                     val i = Intent(this, EditProfit::class.java)
                     startActivity(i)
+                    finish()
                 }
 
             }
@@ -69,7 +70,7 @@ class Profits : AppCompatActivity() , View.OnClickListener{
                     if (dataSnapshot.exists()) {
 
                         for (issue in dataSnapshot.children) {
-                            val note = issue.getValue<IncomeProfitPojo>(IncomeProfitPojo::class.java)
+                            val note = issue.getValue<incomePojo>(incomePojo::class.java)
 
                             profitArray.add(note)
                         }
@@ -77,7 +78,11 @@ class Profits : AppCompatActivity() , View.OnClickListener{
                         mRecyclerView.adapter = adapter
                         mRecyclerView.addOnItemClickListener(object : OnItemClickListener {
                             override fun onItemClicked(position: Int, view: View) {
-                                Toast.makeText(mContext, "clicked on " + profitArray.get(position)?.customerName.toString(), Toast.LENGTH_SHORT).show()
+//                                Toast.makeText(
+//                                    mContext,
+//                                    "clicked on " + profitArray.get(position)?.customerName.toString(),
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
                             }
                         })
                     }
@@ -97,7 +102,7 @@ class Profits : AppCompatActivity() , View.OnClickListener{
 
     // // View Holder Class
 
-    class UsersViewHolder(var mview : View) : RecyclerView.ViewHolder(mview) {
+    class UsersViewHolder(var mview: View) : RecyclerView.ViewHolder(mview) {
 
 
     }
@@ -108,7 +113,8 @@ class Profits : AppCompatActivity() , View.OnClickListener{
     }
 
     fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
-        this.addOnChildAttachStateChangeListener(object : RecyclerView.OnChildAttachStateChangeListener {
+        this.addOnChildAttachStateChangeListener(object :
+            RecyclerView.OnChildAttachStateChangeListener {
             override fun onChildViewDetachedFromWindow(view: View) {
                 view?.setOnClickListener(null)
             }

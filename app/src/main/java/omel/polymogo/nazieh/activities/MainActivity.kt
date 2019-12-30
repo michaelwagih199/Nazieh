@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
 
     fun handle_user(){
         var userKey = key.getUsername(mContext)
-        messageAlerts.displayToast(mContext,"kk"+userKey)
+       // messageAlerts.displayToast(mContext,"kk"+userKey)
         if (userKey=="123456"){
             btnSettings.setVisibility(View.GONE)
         }

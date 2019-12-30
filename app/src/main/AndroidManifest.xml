@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.EditProfit"></activity>
+        <activity android:name=".activities.EditExpensess"></activity>
+        <activity android:name=".activities.EditProfit" />
         <activity android:name=".activities.Expenses" />
         <activity android:name=".activities.Profits" />
         <activity android:name=".activities.CustomerDetails" />
